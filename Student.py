@@ -80,15 +80,58 @@ class CSE_Student(Student):
             elif value[0]=='optional':
                 c.optional.pop(l)
                 courses.pop(l)
-        counter=1
-        for i in courses.keys():
-            print(f'{counter}. {i}',end=' ')
-            if counter!=0 and counter%3==0:
-                print()
-            counter+=1
-        
-        
-            
+        self.info()
+        # counter=1
+        # for i in courses.keys():
+        #     print(f'{counter}. {i}',end=' ')
+        #     if counter!=0 and counter%3==0:
+        #         print()
+        #     counter+=1
+    def info(self):
+        print(f'Total credits Breakdown:\n GenEd Courses + School Core Courses(39 + 12 Credits):')
+        print(f'1. Writing Comprehension:{6-(len(c.core)*3)}/6 completed')
+        if 6-(len(c.core)*3)!=6:
+            print('Remaining courses:',end=' ')
+            for i in c.core:
+                print(i,end=' ')
+            print()
+        print(f'2. Math and Natural Sciences: {21-len(c.mns)*3}/21 completed')
+        if 21-len(c.mns)*3!=21:
+            print('Remaining courses:',end=' ')
+            for i in c.mns:
+                print(i,end=' ')
+            print()
+        print(f'3. Arts and Humanities(minimum 9 credits): {75-len(c.artsandhum)*3}/9 completed ')
+        if 75-len(c.artsandhum)*3<9:
+            print(f'Minimum {int((9-75+len(c.artsandhum)*3)/3)} from this courses:',end=' ')
+            for i in c.artsandhum:
+                print(i,end=' ')
+            print()
+        print(f'4. Social Sciences(minimum 6 credits): {63-len(c.social)*3}/6 completed')
+        if 63-len(c.social)*3<6:
+            print(f'Minimum {int((6-63+len(c.social)*3)/3)} from this courses:',end=' ')
+            for i in c.social:
+                print(i,end=' ')
+            print()
+        print(f'5. Communities, Seeking Transformation(minimum 3 credits): {33-len(c.cst)*3}/3 completed')
+        if 33-len(c.cst)*3<3:
+            print(f'Minimum {int((3-33+len(c.cst)*3)/3)} from this courses:',end=' ')
+            for i in c.cst:
+                print(i,end=' ')
+            print()
+        print(f'Program Core Courses (75 credits): {75-len(c.program)*3}/75 completed')
+        if 75-len(c.program)*3<75:
+            print(f'Remaining Courses:',end=' ')
+            for i in c.program:
+                print(i,end=' ')
+            print()
+        print(f'Project/Internship/Thesis(4 credits): {4-len(c.thesis)*4}/4 completed')
+        if 4-len(c.thesis)*4<4:
+            print(f'Remaining Course: CSE400')
+        print(f'Optional courses:',end=' ')
+        for i in c.optional:
+            print(i,end=' ')
+        print()
 
     def interface(self,entry=0):
         print(f'Choose the following options:\n1.Show Available Courses\n2.Calculate remaining courses')
